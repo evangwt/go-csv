@@ -1,4 +1,4 @@
-### go-csv
+# go-csv
 
 Simple CSV lib writen by golang solves the encoding nightmare while exporting records. Both on Windows and MacOS with Microsoft Excel, Apple Numbers.
 
@@ -18,7 +18,7 @@ The encoding of CSV files is a nightmare. Some old versions of Microsoft Excel d
 | FF FE       | UTF-16, little-endian |
 | EF BB BF    | UTF-8                 |
 
-####UTF-16
+#### UTF-16
 
 UTF-16 is the key point. But the comma delimiter does not work. We should replace "," with "\t". So this is not a standard CSV format as "Comma Seperated Values". And this is why when you use standard lib "encoding/csv" and encode your records with UTF-16 and the result is still not what you want. Here I choose  UTF-16 little-endian.
 
@@ -55,7 +55,7 @@ func ExportCsv(ctx *gin.Context, name string, data string) {
 	ctx.Data(http.StatusOK, "text/csv;charset=UTF-16LE", []byte(data))
 }
 
-ExportCsv(ctx, 'file', buf.String())
+ExportCsv(ctx, "file", buf.String())
 ```
 
 ## License
